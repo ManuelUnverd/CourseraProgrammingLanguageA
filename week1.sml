@@ -44,3 +44,68 @@ get_nth (["January", "February", "March", "April",
 ^ " " ^ Int.toString(#3 dates) ^ ", " ^ Int.toString(#1 dates) ;
 
 fun number_before_reaching_sum (sum : int, xs : int list ) =
+let fun temp (xs : int list, counter : int, remain : int) = 
+ if hd(xs) >= remain 
+ then counter
+ else temp ( tl(xs), counter + 1 , remain - hd(xs))
+in temp(xs,0, sum)
+end;
+
+fun what_month (date : int ) =
+number_before_reaching_sum( date, [31,28,31,30,31,31,31,30,31,30,31] );
+
+val test9 = what_month 70 ;
+
+fun month_range ( date1: int , date2: int ) =
+let val m1 = what_month(date1)
+    val m2 = what_month(date2)
+    fun temp (month1 : int , month2: int, counter : int) = 
+     if month1 >= counter andalso month2 >= counter then
+      counter :: temp(month1, month2, counter +2)
+     else []
+in
+temp(m1,m2,1)
+end;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
